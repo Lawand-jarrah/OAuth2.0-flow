@@ -1,0 +1,24 @@
+{
+  "name": "oauth2.0-flow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lawand-jarrah/OAuth2.0-flow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Lawand-jarrah/OAuth2.0-flow/issues"
+  },
+  "homepage": "https://github.com/Lawand-jarrah/OAuth2.0-flow#readme",
+  "dependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
