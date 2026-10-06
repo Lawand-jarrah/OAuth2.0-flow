@@ -1,6 +1,6 @@
-export function createRefreshTokenRepository(pool) {
+export function refreshTokenRepository(pool) {
   return {
-    async insertRefreshToken({
+    async createa({
       token,
       user_sub,
       client_id,
@@ -24,6 +24,6 @@ export function createRefreshTokenRepository(pool) {
 
     async deleteByToken(token) {
       await pool.query("DELETE FROM refresh_tokens WHERE token = $1", [token]);
-    }
+    },
   };
 }

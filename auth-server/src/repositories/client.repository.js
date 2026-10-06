@@ -1,6 +1,6 @@
-export function createClientRepository(pool) {
+export function clientRepository(pool) {
   return {
-    async createClient({ client_id, redirect_uri }) {
+    async create({ client_id, redirect_uri }) {
       await pool.query(
         `INSERT INTO clients (client_id, redirect_uri)
                 VALUES ($1, $2)
@@ -15,6 +15,6 @@ export function createClientRepository(pool) {
         [client_id],
       );
       return rows[0];
-    }
+    },
   };
 }

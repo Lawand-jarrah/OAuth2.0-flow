@@ -1,9 +1,9 @@
 import pg from "pg";
-import { createUserRepository } from "../repositories/user.repository.js";
-import { createClientRepository } from "../repositories/client.repository.js";
-import { createAuthCodeRepository } from "../repositories/authCode.repository.js";
-import { createAuthSessionRepository } from "../repositories/authSession.repository.js";
-import { createRefreshTokenRepository } from "../repositories/refreshToken.repository.js";
+import { userRepository } from "../repositories/user.repository.js";
+import { clientRepository } from "../repositories/client.repository.js";
+import { authorizationCodeRepository } from "../repositories/authorizationCode.repository.js";
+import { authenticationSessionRepository } from "../repositories/authenticationSession.repository.js";
+import { refreshTokenRepository } from "../repositories/refreshToken.repository.js";
 
 const SCHEMA = `
     CREATE TABLE IF NOT EXISTS clients (
@@ -19,14 +19,14 @@ const SCHEMA = `
         password_salt       TEXT NOT NULL
     );
 
-    CREATE TABLE IF NOT EXISTS auth_sessions (
+    CREATE TABLE IF NOT EXISTS authentication_sessions (
         session_id          TEXT PRIMARY KEY,
         user_sub            TEXT NOT NULL REFERENCES users(sub),
         expires_at          TIMESTAMP WITH THE TIME ZONE NOT NULL,
         FOREIGN KEY (user_sub) REFERENCES users(sub) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-    CREATE TABLE IF NOT EXISTS auth_codes (
+    CREATE TABLE IF NOT EXISTS authorization_codes (
         code                TEXT PRIMARY KEY,
         client_id           TEXT NOT NULL,
         redirect_uri        TEXT NOT NULL,
@@ -56,11 +56,11 @@ export async function createDatabase(connectionString) {
   await pool.query(SCHEMA);
 
   return {
-    users: createUserRepository(pool),
-    clients: createClientRepository(pool),
-    authCodes: createAuthCodeRepository(pool),
-    authSessions: createAuthSessionRepository(pool),
-    refreshTokens: createRefreshTokenRepository(pool),
+    users: userRepository(pool),
+    clients: clientRepository(pool),
+    authorizationCodes: authorizationCodeRepository(pool),
+    authenticationSessions: authenticationSessionRepository(pool),
+    refreshTokens: refreshTokenRepository(pool),
     close: () => pool.end(),
   };
 }

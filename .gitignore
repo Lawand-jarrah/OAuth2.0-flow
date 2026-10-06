@@ -1,5 +1,3 @@
 node_modules/
-private.pem
-public.pem
-scripts/
-config/
+*.pem
+.env
