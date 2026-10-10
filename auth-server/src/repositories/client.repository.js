@@ -1,11 +1,11 @@
 export function clientRepository(pool) {
   return {
-    async create({ client_id, redirect_uri }) {
+    async create({ client_id, redirect_uris }) {
       await pool.query(
-        `INSERT INTO clients (client_id, redirect_uri)
+        `INSERT INTO clients (client_id, redirect_uris)
                 VALUES ($1, $2)
                 ON CONFLICT (client_id) DO NOTHING`,
-        [client_id, redirect_uri],
+        [client_id, redirect_uris],
       );
     },
 

@@ -1,9 +1,9 @@
 import { generateOpaqueCode, verifyPassword } from "./cryptoHelper.service.js";
 
-export function authenticationService() {
+export function authenticationService({ userRepository, authenticationSessionRepository, sessionTtlMs }) {
   return {
     async authenticateUser(email, password) {
-      const user = await findUserByEmail(email);
+      const user = await userRepository.findByEmail(email);
       if (
         !user ||
         !verifyPassword(password, user.password_salt, user.password_hash)

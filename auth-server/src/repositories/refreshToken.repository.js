@@ -1,6 +1,6 @@
 export function refreshTokenRepository(pool) {
   return {
-    async createa({
+    async create({
       token,
       user_sub,
       client_id,

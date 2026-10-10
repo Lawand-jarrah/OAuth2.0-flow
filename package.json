@@ -20,5 +20,6 @@
   "homepage": "https://github.com/Lawand-jarrah/OAuth2.0-flow#readme",
   "dependencies": {
     "concurrently": "^10.0.5"
-  }
+  },
+  "devDependencies": {}
 }
